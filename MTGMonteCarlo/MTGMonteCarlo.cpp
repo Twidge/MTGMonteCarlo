@@ -2,192 +2,51 @@
 //
 
 #include "stdafx.h"
-#include "DecklistFunctions.h"
-#include "ShuffleFunctions.h"
-#include "CheckFunctions.h"
+#include "SimulationController.h"
+#include "Player.h"
+#include "Deck.h"
+#include "Card.h"
 #include <iostream>
 #include <vector>
 #include <ctime>
 
 using namespace std;
 
-bool CheckMulligan(vector<Card>, vector<Card>);
+const unsigned int G_NUMBER_OF_TRIALS = 1000;
+const unsigned int G_TURNS_TO_CHECK = 3;
+const bool G_ON_PLAY = true;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(NULL)));
 
-	int size = 60;
-	float trials = 0;
-	int loopCount = 0;
-	float successfulTrials = 0;
+	unsigned int t_mana[G_MANA_TYPES] {0, 1, 0, 0, 0, 1, 0};
 
-	const int maxCardsAllowed = 9;
-	const int maxOpeningHandSize = 7;
-	int cardsAllowed = 9;
-	int openingHandSize = 7;
-	bool shouldMulligan = false;
+	const Card t_cardToCheck = Card("Fleecemane Lion", Creature, Mana(t_mana));
 
-	vector<Card> deck;
+	float t_successfulTrials = 0;
 
-	deck = GetDecklist(deck, "decklist.txt", size);
+	Player t_simPlayer = Player();
+	t_simPlayer.ConstructDeck("decklist.txt");
+	SimulationController t_simController = SimulationController(&t_simPlayer);
 
-	cout << "Enter amount of trials: ";
-	cin >> trials;
-
-	do
+	for (unsigned int l_trial = 0; l_trial < G_NUMBER_OF_TRIALS; l_trial++)
 	{
-		vector<Card> shuffledDeck = ShuffleDeck(deck, size);
-
-		vector<Card> topCards;
-		vector<Card> lands;
-
-		for (int i = 0; i < cardsAllowed; i++)
+		if (t_simController.RunSimulation(t_cardToCheck, G_TURNS_TO_CHECK, G_ON_PLAY))
 		{
-			topCards.push_back(shuffledDeck[i]);
-
-			if (shuffledDeck[i].GetCardType().find("Land") != string::npos || shuffledDeck[i].GetCardType().find("Fetchland") != string::npos || shuffledDeck[i].GetCardType().find("Scryland") != string::npos || shuffledDeck[i].GetCardType().find("Tapland") != string::npos)
-			{
-				lands.push_back(shuffledDeck[i]);
-			}
-
-			if (i == openingHandSize - 1)
-			{
-				shouldMulligan = CheckMulligan(topCards, lands);
-			}
+			t_successfulTrials++;
 		}
 
-		if (shouldMulligan)
+		if (l_trial % 100 == 0 && l_trial != 0)
 		{
-			cardsAllowed--;
-			openingHandSize--;
-			continue;
+			std::cout << "Trial " << l_trial << " done.\n";
 		}
+	}
 
-		else
-		{
-			cardsAllowed = maxCardsAllowed;
-			openingHandSize = maxOpeningHandSize;
-		}
+	std::cout << "Number of trials: " << G_NUMBER_OF_TRIALS << ".\n";
+	std::cout << "Successful trials: " << t_successfulTrials << ".\n";
 
-		/*
-		bool isInHand = false;
-
-		for (int i = 0; i < topCards.size(); i++)
-		{
-			if (topCards[i].GetCardName() == deck[0].GetCardName())
-			{
-				isInHand = true;
-			}
-		}
-
-		bool works = isInHand;
-		*/
-
-		bool works = true;
-
-		if (works)
-		{
-			if (lands.size() >= 6)
-			{
-				vector<Card> newLands;
-
-				for (int i = 0; i < lands.size(); i++)
-				{
-					newLands.push_back(lands[i]);
-
-					works = CheckIfManaFor(deck[0], newLands);
-					
-					if (works)
-					{
-						works = CheckIfManaFor(deck[3], newLands);
-					}
-
-					if (works)
-					{
-						break;
-					}
-				}
-			}
-
-			else
-			{
-				works = CheckIfManaFor(deck[0], lands);
-
-				if (works)
-				{
-					CheckIfManaFor(deck[3], lands);
-				}
-			}
-		}
-
-		loopCount++;
-
-		if (works)
-		{
-			cout << "Trial " << loopCount << " successful.\n";
-			successfulTrials++;
-		}
-
-	} while (loopCount <= trials);
-
-	cout << successfulTrials << " of " << trials << " trials were successful.\n";
-	cout << successfulTrials / trials << " success rate.\n";
-
-	cin.get();
-	cin.get();
+	std::cin.get();
 
 	return 0;
-}
-
-bool CheckMulligan(vector<Card> openingHand, vector<Card> openingLands)
-{
-	switch (openingHand.size())
-	{
-	case 7:
-
-		if (openingLands.size() <= 1 || openingLands.size() >= 6)
-		{
-			return true;
-		}
-
-		else
-		{
-			return false;
-		}
-
-		break;
-
-	case 6:
-
-		if (openingLands.size() <= 1 || openingLands.size() >= 5)
-		{
-			return true;
-		}
-
-		else
-		{
-			return false;
-		}
-
-		break;
-
-	case 5:
-
-		if (openingLands.size() == 0 || openingLands.size() == 5)
-		{
-			return true;
-		}
-
-		else
-		{
-			return false;
-		}
-
-		break;
-
-	default:
-
-		return false;
-	}
 }

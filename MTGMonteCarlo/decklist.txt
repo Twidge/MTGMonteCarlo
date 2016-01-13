@@ -1,124 +1,64 @@
-3x
-Anafenza, the Foremost
+4
+Fleecemane Lion
 Creature
-GWB
+WG
 
-4x
-Crackling Doom
-Instant
-WBR
-
-1x
-Hangarback Walker
+4
+Avatar of the Resolute
 Creature
+GG
+
+4
+Brimaz, King of Oreskos
+Creature
+1WW
+
+4
+Elemental Bond
+Enchantment
+2G
+
+4
+Surrak, the Hunt Caller
+Creature
+2GG
+
 2
-
-3x
-Soulfire Grand Master
+Ojutai Exemplars
 Creature
+2WW
+
+4
+Wingmate Roc
+Creature
+3WW
+
+4
+Feat of Resistance
+Instant
 1W
 
-3x
-Den Protector
-Creature
-3
-
-4x
-Siege Rhino
-Creature
-1GWB
-
-1x
-Tasigur, the Golden Fang
-Creature
-4B
-
-2x
-Ultimate Price
-Instant
-1B
-
-2x
+4
 Valorous Stance
 Instant
 1W
 
-3x
-Dromoka's Command
-Instant
-GW
-
-1x
-Kolaghan's Command
-Instant
-1BR
-
-2x
-Hero's Downfall
-Instant
-1BB
-
-4x
-Abzan Charm
-Instant
-GWB
-
-1x
-Caves of Koilos
-Land WB
-0
-
-1x
-Mountain
-Land R
-0
-
-1x
-Urborg, Tomb of Yawgmoth
-Land B
-0
-
-2x
-Forest
-Land G
-0
-
-2x
-Plains
-Land W
-0
-
-2x
-Swamp
-Land B
-0
-
-2x
-Bloodstained Mire
-Fetchland BR
-0
-
-3x
+4
 Windswept Heath
-Fetchland WG
+Land Fetchland WG
 0
 
-3x
-Wooded Foothills
-Fetchland GR
+4
+Blossoming Sands
+Land LifeTapland WG
 0
 
-2x
-Mana Confluence
-Land WUBRG
+7
+Forest
+Land Basic G
 0
 
-4x
-Nomad Outpost
-Tapland WBR
-0
-
-4x
-Sandsteppe Citadel
-Tapland GWB
+11
+Plains
+Land Basic W
 0

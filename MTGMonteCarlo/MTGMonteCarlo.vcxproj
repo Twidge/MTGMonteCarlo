@@ -82,23 +82,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
-    <ClInclude Include="CheckFunctions.h" />
-    <ClInclude Include="DecklistFunctions.h" />
+    <ClInclude Include="Deck.h" />
     <ClInclude Include="Landtypes.h" />
     <ClInclude Include="Mana.h" />
-    <ClInclude Include="ShuffleFunctions.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="SimulationController.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
-    <ClCompile Include="CheckFunctions.cpp" />
-    <ClCompile Include="DecklistFunctions.cpp" />
-    <ClCompile Include="Instructions.cpp" />
+    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Landtypes.cpp" />
     <ClCompile Include="Mana.cpp" />
     <ClCompile Include="MTGMonteCarlo.cpp" />
-    <ClCompile Include="ShuffleFunctions.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SimulationController.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

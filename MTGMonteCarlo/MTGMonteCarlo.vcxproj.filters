@@ -33,13 +33,13 @@
     <ClInclude Include="Landtypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DecklistFunctions.h">
+    <ClInclude Include="Deck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShuffleFunctions.h">
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CheckFunctions.h">
+    <ClInclude Include="SimulationController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,19 +56,16 @@
     <ClCompile Include="Card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instructions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Landtypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DecklistFunctions.cpp">
+    <ClCompile Include="Deck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShuffleFunctions.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CheckFunctions.cpp">
+    <ClCompile Include="SimulationController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,64 +1,65 @@
-#ifndef MANA_CPP
-#define MANA_CPP
-
 #include "Mana.h"
+#include <iostream>
 
-Mana::Mana(int a, int b, int c, int d, int e, int f)
-{
-	mana[colourless] = a;
-	mana[white] = b;
-	mana[blue] = c;
-	mana[black] = d;
-	mana[red] = e;
-	mana[green] = f;
-}
+// CONSTRUCTORS
 
 Mana::Mana()
 {
-	for (int i = 0; i < 6; i++)
+	for (unsigned int l_manaType = 0; l_manaType < G_MANA_TYPES; l_manaType++)
 	{
-		mana[i] = 0;
+		mana[l_manaType] = 0;
 	}
 }
 
-void Mana::AddMana(int amount, char colour)
+Mana::Mana(Mana const& otherMana)
 {
-	switch (colour)
+	for (unsigned int l_manaType = 0; l_manaType < G_MANA_TYPES; l_manaType++)
 	{
-	case 'C' :
-		mana[colourless] += amount;
-		break;
-
-	case 'W' :
-		mana[white] += amount;
-		break;
-
-	case 'U' :
-		mana[blue] += amount;
-		break;
-
-	case 'B' :
-		mana[black] += amount;
-		break;
-
-	case 'R' :
-		mana[red] += amount;
-		break;
-
-	case 'G' :
-		mana[green] += amount;
-		break;
+		mana[l_manaType] = otherMana.mana[l_manaType];
 	}
 }
 
-int Mana::GetMana(int x) const
+Mana::Mana(unsigned int manaTypes[G_MANA_TYPES])
 {
-	return mana[x];
+	for (unsigned int l_manaType = 0; l_manaType < G_MANA_TYPES; l_manaType++)
+	{
+		mana[l_manaType] = manaTypes[l_manaType];
+	}
 }
 
-int Mana::GetMana(ManaTypes name) const
+// GETTERS
+
+unsigned int Mana::GetMana(ManaType colour) const
 {
-	return mana[name];
+	return mana[colour];
 }
 
-#endif
+// METHODS
+
+void Mana::AddMana(unsigned int amount, ManaType colour)
+{
+	mana[colour] += amount;
+}
+
+void Mana::RemoveMana(unsigned int amount, ManaType colour)
+{
+	if (mana[colour] >= amount)
+	{
+		mana[colour] -= amount;
+	}
+
+	else
+	{
+		std::cout << "Error in Mana::RemoveMana(): cannot remove the amount of mana requested.\n";
+	}
+}
+
+// OPERATOR OVERLOADS
+
+void Mana::operator= (Mana const& otherMana)
+{
+	for (unsigned int l_manaType = 0; l_manaType < G_MANA_TYPES; l_manaType++)
+	{
+		mana[l_manaType] = otherMana.mana[l_manaType];
+	}
+}

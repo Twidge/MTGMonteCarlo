@@ -1,22 +1,45 @@
 #ifndef MANA_H
 #define MANA_H
 
-enum ManaTypes {colourless, white, blue, black, red, green};
+enum ManaType
+{
+	Colourless,
+	White,
+	Blue,
+	Black,
+	Red,
+	Green,
+	AnyColour
+};
+
+const unsigned int G_MANA_TYPES = 7;
 
 class Mana
 {
 private :
 
-	int mana[6];
+	unsigned int mana[G_MANA_TYPES];
 
 public :
 
-	Mana(int, int, int, int, int, int);
-	Mana();
-	void AddMana(int, char);
+	// CONSTRUCTORS
 
-	int GetMana(int) const;
-	int GetMana(ManaTypes) const;
+	Mana();
+	Mana(Mana const&);
+	Mana(unsigned int[G_MANA_TYPES]);
+
+	// GETTERS
+
+	unsigned int GetMana(ManaType) const;
+
+	// METHODS
+
+	void AddMana(unsigned int, ManaType);
+	void RemoveMana(unsigned int, ManaType);
+
+	// OPERATOR OVERLOADS
+
+	void operator= (Mana const&);
 };
 
 #endif
