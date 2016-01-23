@@ -1,64 +1,89 @@
 4
-Fleecemane Lion
-Creature
-WG
+Jeskai Ascendancy
+Enchantment
+0
 
 4
-Avatar of the Resolute
+Rattleclaw Mystic
 Creature
-GG
+0
 
 4
-Brimaz, King of Oreskos
-Creature
-1WW
+Expedite
+Instant
+0
 
-4
+2
 Elemental Bond
 Enchantment
 2G
 
 4
-Surrak, the Hunt Caller
+Thought Knot Seer
 Creature
-2GG
+3C
+
+4
+Hedron Archive
+Artifact
+4
+
+3
+Reality Smasher
+Creature
+4C
+
+4
+Oblivion Sower
+Creature
+6
+
+3
+Dragonlord Atarka
+Creature
+5RG
 
 2
-Ojutai Exemplars
+World Breaker
 Creature
-2WW
+6G
+
+1
+Ugin, the Spirit Dragon
+Planeswalker
+8
 
 4
-Wingmate Roc
-Creature
-3WW
-
-4
-Feat of Resistance
-Instant
-1W
-
-4
-Valorous Stance
-Instant
-1W
-
-4
-Windswept Heath
-Land Fetchland WG
+Wooded Foothills
+Land Fetchland GR
 0
 
 4
-Blossoming Sands
-Land LifeTapland WG
+Frontier Bivouac
+Land Tapland URG
 0
 
-7
+2
+Cinder Glade
+Land Tapland RG
+0
+
+3
 Forest
 Land Basic G
 0
 
-11
-Plains
-Land Basic W
+1
+Mountain
+Land Basic R
+0
+
+3
+Tomb of the Spirit Dragon
+Land Basic C
+0
+
+10
+Wastes
+Land Basic C
 0

@@ -422,7 +422,35 @@ bool Player::CheckCardInHand(Card const& desiredCard)
 
 bool Player::CheckMana(Card const& desiredCard)
 {
-	return CheckMana(desiredCard.GetManaCost(), std::vector<std::shared_ptr<Card>>(), *m_lands);
+	bool t_playerHasMana = false;
+	bool t_costIsZero = true;
+
+	// Check if the mana cost is zero (so we can always play it)
+
+	for (unsigned int l_manaColour = 0; l_manaColour < G_MANA_TYPES; l_manaColour++)
+	{
+		if (desiredCard.GetManaCost().GetMana(static_cast<ManaType>(l_manaColour)) != 0)
+		{
+			t_costIsZero = false;
+			break;
+		}
+	}
+
+	// If the cost is zero, we can play it
+
+	if (t_costIsZero)
+	{
+		t_playerHasMana = true;
+	}
+
+	// Otherwise, check the mana cost can be achieved
+
+	else
+	{
+		t_playerHasMana = CheckMana(desiredCard.GetManaCost(), std::vector<std::shared_ptr<Card>>(), *m_lands);
+	}
+
+	return t_playerHasMana;
 }
 
 // Checks if the mana cost in the argument can be paid for using the lands in the land vector
