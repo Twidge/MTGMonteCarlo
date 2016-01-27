@@ -9,6 +9,8 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <thread>
+#include <future>
 
 using namespace std;
 
@@ -32,25 +34,29 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	float t_successfulTrials = 0;
 
-	Player t_simPlayer = Player();
-	t_simPlayer.ConstructDeck("decklist.txt");
-	SimulationController t_simController = SimulationController(&t_simPlayer);
+	Player t_simPlayerOne = Player();
+	Player t_simPlayerTwo = Player();
+	t_simPlayerOne.ConstructDeck("decklist.txt");
+	t_simPlayerTwo.ConstructDeck("decklist.txt");
+	SimulationController t_simControllerOne = SimulationController(&t_simPlayerOne);
+	SimulationController t_simControllerTwo = SimulationController(&t_simPlayerTwo);
 
-	for (unsigned int l_trial = 0; l_trial < G_NUMBER_OF_TRIALS; l_trial++)
+	std::future<unsigned int> t_futureUIntOne =
+		std::async(&SimulationController::RunAndSimulationLoop, &t_simControllerOne, t_cardsToCheck, G_TURNS_TO_CHECK, G_ON_PLAY, G_NUMBER_OF_TRIALS / 2);
+	std::future<unsigned int> t_futureUIntTwo =
+		std::async(&SimulationController::RunAndSimulationLoop, &t_simControllerTwo, t_cardsToCheck, G_TURNS_TO_CHECK, G_ON_PLAY, G_NUMBER_OF_TRIALS / 2);
+
+	std::future_status t_futureOneStatus, t_futureTwoStatus;
+
+	do
 	{
-		if (t_simController.RunAndSimulation(t_cardsToCheck, G_TURNS_TO_CHECK, G_ON_PLAY))
-		{
-			t_successfulTrials++;
-		}
+		t_futureOneStatus = t_futureUIntOne.wait_for(std::chrono::milliseconds(100));
+		t_futureTwoStatus = t_futureUIntTwo.wait_for(std::chrono::milliseconds(100));
 
-		if (l_trial % 10000 == 0 && l_trial != 0)
-		{
-			std::cout << "Trial " << l_trial << " done.\n";
-		}
-	}
+	} while (t_futureOneStatus != std::future_status::ready || t_futureTwoStatus != std::future_status::ready);
 
 	std::cout << "Number of trials: " << G_NUMBER_OF_TRIALS << ".\n";
-	std::cout << "Successful trials: " << t_successfulTrials << ".\n";
+	std::cout << "Successful trials: " << t_futureUIntOne.get() + t_futureUIntTwo.get() << ".\n";
 
 	std::cin.get();
 

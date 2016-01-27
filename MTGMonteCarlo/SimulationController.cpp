@@ -1,6 +1,7 @@
 #include "SimulationController.h"
 #include "Player.h"
 #include "Card.h"
+#include <iostream>
 
 // CONSTRUCTORS
 
@@ -144,4 +145,60 @@ bool SimulationController::RunAndSimulation(std::vector<Card> const& cardsToPlay
 	}
 
 	return t_simulationSuccessful;
+}
+
+// Loop versions of the above three - run a specified number of trials and return the number of successful trials
+
+unsigned int SimulationController::RunSimulationLoop
+(Card const& cardToPlay, unsigned int onOrBeforeThisTurn, bool playFirst, unsigned int numberOfTrials)
+{
+	unsigned int t_successfulTrials = 0;
+
+	for (unsigned int l_trial = 0; l_trial < numberOfTrials; l_trial++)
+	{
+		bool t_trialSuccessful = RunSimulation(cardToPlay, onOrBeforeThisTurn, playFirst);
+
+		if (t_trialSuccessful)
+		{
+			t_successfulTrials++;
+		}
+	}
+
+	return t_successfulTrials;
+}
+
+unsigned int SimulationController::RunOrSimulationLoop
+(std::vector<Card> const& cardsToPlay, unsigned int onOrBeforeThisTurn, bool playFirst, unsigned int numberOfTrials)
+{
+	unsigned int t_successfulTrials = 0;
+
+	for (unsigned int l_trial = 0; l_trial < numberOfTrials; l_trial++)
+	{
+		bool t_trialSuccessful = RunOrSimulation(cardsToPlay, onOrBeforeThisTurn, playFirst);
+
+		if (t_trialSuccessful)
+		{
+			t_successfulTrials++;
+		}
+	}
+
+	return t_successfulTrials;
+}
+
+unsigned int SimulationController::RunAndSimulationLoop
+(std::vector<Card> const& cardsToPlay, unsigned int onOrBeforeThisTurn, bool playFirst, unsigned int numberOfTrials)
+{
+	unsigned int t_successfulTrials = 0;
+
+	for (unsigned int l_trial = 0; l_trial < numberOfTrials; l_trial++)
+	{
+		bool t_trialSuccessful = RunAndSimulation(cardsToPlay, onOrBeforeThisTurn, playFirst);
+
+		if (t_trialSuccessful)
+		{
+			t_successfulTrials++;
+		}
+	}
+
+	return t_successfulTrials;
 }
