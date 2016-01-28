@@ -374,8 +374,18 @@ std::vector<bool> Player::GetManaGenArrayFromString(std::string const& manaGenSt
 
 void Player::ShuffleLibrary()
 {
+	for (unsigned int l_card = 0; l_card < m_library->size() - 1; l_card++)
+	{
+		unsigned int t_cardChosen = (rand() % (m_library->size() - l_card)) + l_card;
+
+		std::shared_ptr<Card> t_tempPtr = (*m_library)[l_card];
+		(*m_library)[l_card] = (*m_library)[t_cardChosen];
+		(*m_library)[t_cardChosen] = t_tempPtr;
+	}
+
+	/*
 	std::vector<unsigned int> t_remainingCards(m_library->size());
-	std::vector<std::shared_ptr<Card>> t_shuffledLibrary = std::vector<std::shared_ptr<Card>>(m_library->size());
+	std::vector<std::shared_ptr<Card>> t_shuffledLibrary(m_library->size());
 
 	// Populate a vector of unsigned ints representing remaining cards
 
@@ -396,6 +406,7 @@ void Player::ShuffleLibrary()
 	}
 
 	*m_library = t_shuffledLibrary;
+	*/
 }
 
 // HAND SIMULATION
@@ -703,10 +714,9 @@ void Player::ResetSimulation()
 	m_hand = new std::vector<std::shared_ptr<Card>>();
 	m_lands = new std::vector<std::shared_ptr<Card>>();
 
-	// Set the deck to be the player's library and shuffle it
+	// Set the deck to be the player's library
 
 	SetDeckAsLibrary();
-	ShuffleLibrary();
 }
 
 // Sets the player's deck as their library

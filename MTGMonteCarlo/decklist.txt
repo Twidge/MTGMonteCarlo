@@ -1,89 +1,99 @@
-4
-Jeskai Ascendancy
-Enchantment
-0
-
-4
-Rattleclaw Mystic
-Creature
-0
-
-4
-Expedite
+2
+Kozilek's Return
 Instant
-0
+2R
+
+1
+Roast
+Sorcery
+1R
 
 2
-Elemental Bond
-Enchantment
-2G
-
-4
-Thought Knot Seer
+Ulamog, the Ceaseless Hunger
 Creature
-3C
-
-4
-Hedron Archive
-Artifact
-4
-
-3
-Reality Smasher
-Creature
-4C
+9
 
 4
 Oblivion Sower
 Creature
 6
 
+4
+Hedron Archive
+Artifact
+4
+
+4
+Nissa's Pilgrimage
+Sorcery
+2G
+
+4
+Sylvan Advocate
+Creature
+1G
+
 3
 Dragonlord Atarka
 Creature
 5RG
 
-2
+3
 World Breaker
 Creature
 6G
 
-1
+4
+Explosive Vegetation
+Sorcery
+3G
+
+4
+Hangarback Walker
+Creature
+2
+
+2
 Ugin, the Spirit Dragon
 Planeswalker
 8
 
+1
+Kozilek, the Great Distortion
+Creature
+9
+
 4
 Wooded Foothills
-Land Fetchland GR
+Land Fetchland RG
 0
 
 4
-Frontier Bivouac
-Land Tapland URG
+Sanctum of Ugin
+Land Basic C
 0
 
-2
+4
+Shrine of the Forsaken Gods
+Land Basic C
+0
+
+3
 Cinder Glade
 Land Tapland RG
 0
 
-3
+7
 Forest
 Land Basic G
+0
+
+2
+Wastes
+Land Basic C
 0
 
 1
 Mountain
 Land Basic R
-0
-
-3
-Tomb of the Spirit Dragon
-Land Basic C
-0
-
-10
-Wastes
-Land Basic C
 0

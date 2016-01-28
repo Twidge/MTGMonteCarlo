@@ -30,13 +30,13 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	unsigned int t_mana[G_MANA_TYPES] {0, 0, 0, 0, 0, 0, 0};
-	unsigned int t_secondMana[G_MANA_TYPES] {0, 0, 0, 0, 0, 0, 0};
-	unsigned int t_thirdMana[G_MANA_TYPES] {0, 0, 0, 0, 0, 0, 0};
+	unsigned int t_mana[G_MANA_TYPES] {0, 0, 0, 0, 0, 0, 4};
+	unsigned int t_secondMana[G_MANA_TYPES] {0, 0, 0, 0, 0, 1, 3};
+	unsigned int t_thirdMana[G_MANA_TYPES] {0, 0, 0, 0, 0, 1, 2};
 
-	const Card t_cardToCheck = Card("Jeskai Ascendancy", Enchantment, Mana(t_mana));
-	const Card t_secondCardToCheck = Card("Rattleclaw Mystic", Creature, Mana(t_secondMana));
-	const Card t_thirdCardToCheck = Card("Expedite", Instant, Mana(t_thirdMana));
+	const Card t_cardToCheck = Card("Hedron Archive", Artifact, Mana(t_mana));
+	const Card t_secondCardToCheck = Card("Explosive Vegetation", Sorcery, Mana(t_secondMana));
+	const Card t_thirdCardToCheck = Card("Nissa's Pilgrimage", Sorcery, Mana(t_thirdMana));
 
 	std::vector<Card> t_cardsToCheck{ t_cardToCheck, t_secondCardToCheck, t_thirdCardToCheck };
 
@@ -82,7 +82,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		t_simPlayers[l_testInstance].ConstructDeck("decklist.txt");
 		t_simControllers[l_testInstance] = SimulationController(&t_simPlayers[l_testInstance]);
 
-		t_trialResults[l_testInstance] = std::async(&SimulationController::RunAndSimulationLoop,
+		t_trialResults[l_testInstance] = std::async(&SimulationController::RunOrSimulationLoop,
 			&t_simControllers[l_testInstance], t_cardsToCheck, G_TURNS_TO_CHECK, G_ON_PLAY, G_NUMBER_OF_TRIALS / 2);
 	}
 
